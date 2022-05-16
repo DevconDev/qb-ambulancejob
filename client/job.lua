@@ -412,6 +412,7 @@ RegisterNetEvent('EMSToggle:Duty', function()
     TriggerServerEvent("police:server:UpdateBlips")
     if onDuty then TriggerServerEvent('qb-log:server:CreateLog', 'ambulanceduty', 'Clocked In', 'green', '**' .. GetPlayerName(playerid) .. '**'.. ' is now On Duty'  )
     else TriggerServerEvent('qb-log:server:CreateLog', 'ambulanceduty', 'Clocked Out', 'red', '**' .. GetPlayerName(playerid) .. '**'.. ' is now Off Duty'  )
+end
 end)
 
 CreateThread(function()
