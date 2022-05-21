@@ -67,7 +67,6 @@ Config.Locations = { -- Edit the various interaction points for players or creat
     ["stash"] = {
         [1] = vector3(309.78, -596.6, 43.29),
         [2] = vector3(-438.73, -306.19, 34.91),
-
     },
     ["beds"] = {
         [1] = {coords = vector4(353.1, -584.6, 43.11, 152.08), taken = false, model = 1631638868},
@@ -78,8 +77,8 @@ Config.Locations = { -- Edit the various interaction points for players or creat
         [6] = {coords = vector4(360.32, -587.19, 43.02, 152.08), taken = false, model = -1091386327},
         [7] = {coords = vector4(349.82, -583.33, 43.02, 152.08), taken = false, model = -1091386327},
         [8] = {coords = vector4(326.98, -576.17, 43.02, 152.08), taken = false, model = -1091386327},
-    --- paleto
-        [9] = {coords = vector4(-252.43, 6312.25, 32.34, 313.48), taken = false, model = 2117668672},
+	--- paleto
+	    [9] = {coords = vector4(-252.43, 6312.25, 32.34, 313.48), taken = false, model = 2117668672},
         [10] = {coords = vector4(-247.04, 6317.95, 32.34, 134.64), taken = false, model = 2117668672},
         [11] = {coords = vector4(-255.98, 6315.67, 32.34, 313.91), taken = false, model = 2117668672},
     ---MZ
@@ -87,10 +86,10 @@ Config.Locations = { -- Edit the various interaction points for players or creat
         [13] = {coords = vector4(-454.92, -286.48, 34.47, 20.42), taken = false, model = 2117714237},
         [14] = {coords = vector4(-459.0, -279.65, 34.47, 199.86), taken = false, model = 2117714237},
         [15] = {coords = vector4(-462.75, -281.23, 34.47, 199.86), taken = false, model = 2117714237},
-        
+     
     },
     ["stations"] = {
-        [1] = {label = Lang:t('info.pb_hospital'), coords = vector4(304.27, -600.33, 43.28, 272.249)},
+        [1] = {label = Lang:t('info.pb_hospital'), coords = vector4(304.27, -600.33, 43.28, 272.249)}
         [2] = {label = Lang:t('info.mz_hospital'), coords = vector4(-471.6, -325.18, 34.36, 174.67)}
        
     }
@@ -127,9 +126,7 @@ Config.AuthorizedVehicles = { -- Vehicles players can use based on their ambulan
         ["poldom"] = "EMS Dom",
         ["emsgator"] = "EMS Gator",
         ["gatortrailer"] = "EMS Gator Trailer",
-        
-
-    }
+	}
 }
 
 Config.Items = { -- Items found in the ambulance shop for players with the ambulance job to purchase
