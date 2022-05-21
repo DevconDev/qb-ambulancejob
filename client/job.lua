@@ -408,11 +408,13 @@ RegisterNetEvent('EMSToggle:Duty', function()
     onDuty = not onDuty
     TriggerServerEvent("QBCore:ToggleDuty")
     TriggerServerEvent("police:server:UpdateBlips")
-    if onDuty then TriggerServerEvent('qb-log:server:CreateLog', 'ambulanceduty', 'Clocked In', 'green', '**' .. GetPlayerName(playerid) .. '**'.. ' is now On Duty'  )
-    else TriggerServerEvent('qb-log:server:CreateLog', 'ambulanceduty', 'Clocked Out', 'red', '**' .. GetPlayerName(playerid) .. '**'.. ' is now Off Duty'  )
+    if onDuty then TriggerServerEvent('qb-log:server:CreateLog', 'shiftlogAmbulance', 'Clocked In', 'green', '**' .. GetPlayerName(playerid) .. '**'.. ' is now On Duty'  )
+    
 end
 end)
-
+RegisterCommand('toggleduty', function(source)
+    TriggerEvent('qb-policejob:ToggleDuty')
+end)
 CreateThread(function()
     for k, v in pairs(Config.Locations["vehicle"]) do
         local boxZone = BoxZone:Create(vector3(vector3(v.x, v.y, v.z)), 5, 5, {
