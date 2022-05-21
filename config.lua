@@ -41,7 +41,6 @@ Config.Locations = {
     ["stash"] = {
         [1] = vector3(309.78, -596.6, 43.29),
         [2] = vector3(-438.73, -306.19, 34.91),
-
     },
     ["beds"] = {
         [1] = {coords = vector4(353.1, -584.6, 43.11, 152.08), taken = false, model = 1631638868},
@@ -61,7 +60,7 @@ Config.Locations = {
         [13] = {coords = vector4(-454.92, -286.48, 34.47, 20.42), taken = false, model = 2117714237},
         [14] = {coords = vector4(-459.0, -279.65, 34.47, 199.86), taken = false, model = 2117714237},
         [15] = {coords = vector4(-462.75, -281.23, 34.47, 199.86), taken = false, model = 2117714237},
-        
+     
     },
     ["stations"] = {
         [1] = {label = Lang:t('info.pb_hospital'), coords = vector4(304.27, -600.33, 43.28, 272.249)},
@@ -100,8 +99,6 @@ Config.AuthorizedVehicles = {
         ["poldom"] = "EMS Dom",
         ["emsgator"] = "EMS Gator",
         ["gatortrailer"] = "EMS Gator Trailer",
-        
-
 	}
 }
 
