@@ -19,8 +19,8 @@ local Translations = {
         helped_player = 'You helped the person',
         wounds_healed = 'Your wounds have been healed!',
         being_helped = 'You are being helped...',
-        doc_alerted = 'Emergency Staff Notified, please wait...',
-        doc_notavail = 'Please wait for On Call Doctor...',
+        doc_alerted = 'Paging Emergency Staff, please wait...',
+        doc_notavail = 'Please wait for Local Doctor...',
 
     },
     info = {
@@ -124,7 +124,9 @@ local Translations = {
         painkillers = 'Taking Painkillers...',
         revive = 'Reviving Person...',
         healing = 'Healing Wounds...',
-        checking_in = 'Checking in...',
+        checking_in = 'Checking in with Local Doctor...',
+        checking_in_a = 'Checking in with Nurse...',
+
     },
     logs = {
         death_log_title = "%{playername} (%{playerid}) is dead",

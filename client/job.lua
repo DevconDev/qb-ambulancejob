@@ -403,14 +403,18 @@ RegisterNetEvent('qb-ambulancejob:elevator_main', function()
         DoScreenFadeIn(1000)
     end
 end)
+ 
+local Player = QBCore.Functions.GetPlayerData()
+local firstName = Player.charinfo.firstname
+local lastName = Player.charinfo.lastname
 
 RegisterNetEvent('EMSToggle:Duty', function()
     onDuty = not onDuty
     TriggerServerEvent("QBCore:ToggleDuty")
     TriggerServerEvent("police:server:UpdateBlips")
-    if onDuty then TriggerServerEvent('qb-log:server:CreateLog', 'shiftlogAmbulance', 'Clocked In', 'green', '**' .. GetPlayerName(playerid) .. '**'.. ' is now On Duty'  )
+   -- if onDuty then TriggerServerEvent('qb-log:server:CreateLog', 'shiftlogAmbulance', 'Clocked In', 'green', '**'.. QBCore.Functions.GetPlayerData().job.grade.level .. ' ' .. Player.charinfo.firstname .. ' ' .. Player.charinfo.lastname .. '**'.. ' is now On Duty'  )
     
-end
+--end
 end)
 RegisterCommand('toggleduty', function(source)
     TriggerEvent('qb-policejob:ToggleDuty')

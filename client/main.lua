@@ -845,8 +845,17 @@ end
 RegisterNetEvent('qb-ambulancejob:checkin', function()
     if doctorCount >= Config.MinimalDoctors then
         --[[TriggerServerEvent("hospital:server:SendDoctorAlert")]] --removed doc alert, made so it sends ambulancealert
+        TriggerEvent('animations:client:EmoteCommandStart', {"notepad"})
         TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_checkin'))
         QBCore.Functions.Notify(Lang:t('success.doc_alerted'), 'success')
+        QBCore.Functions.Progressbar("hospital:server:ambulanceAlert", Lang:t('progress.checking_in_a'), 2000, false, true, {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function() 
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+    end)
     else
         TriggerEvent('animations:client:EmoteCommandStart', {"notepad"})
         QBCore.Functions.Notify(Lang:t('success.doc_notavail'), 'success')
@@ -865,7 +874,7 @@ RegisterNetEvent('qb-ambulancejob:checkin', function()
             end
         end, function() -- Cancel
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-            QBCore.Functions.Notify(Lang:t('error.canceled'), "error")
+            QBCore.Functions.Notify(Lang:t('error.cancelled'), "error")
         end)
     end
 end)
