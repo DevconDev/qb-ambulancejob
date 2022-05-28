@@ -405,8 +405,7 @@ RegisterNetEvent('qb-ambulancejob:elevator_main', function()
 end)
  
 local Player = QBCore.Functions.GetPlayerData()
-local firstName = Player.charinfo.firstname
-local lastName = Player.charinfo.lastname
+
 
 RegisterNetEvent('EMSToggle:Duty', function()
     onDuty = not onDuty
