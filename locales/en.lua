@@ -79,7 +79,7 @@ local Translations = {
     },
     menu = {
         amb_vehicles = 'Ambulance Vehicles',
-        status = 'Heath Status',
+        status = 'Health Status',
         close = '⬅ Close Menu',
     },
     text = {
