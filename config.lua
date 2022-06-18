@@ -1,4 +1,36 @@
 Config = {}
+Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add setr UseTarget true)
+Config.MinimalDoctors = 2 -- How many players with the ambulance job to prevent the hospital check-in system from being used
+Config.WipeInventoryOnRespawn = true -- Enable or disable removing all the players items when they respawn at the hospital
+Config.Helicopter = "polmav" -- Helicopter model that players with the ambulance job can use
+Config.BillCost = 2000 -- Price that players are charged for using the hospital check-in system
+Config.DeathTime = 300 -- How long the timer is for players to bleed out completely and respawn at the hospital
+Config.PainkillerInterval = 60 -- Set the length of time painkillers last (per one)
+Config.HealthDamage = 5 -- Minumum damage done to health before checking for injuries
+Config.ArmorDamage = 5 -- Minumum damage done to armor before checking for injuries
+Config.ForceInjury = 35 -- Maximum amount of damage a player can take before limb damage & effects are forced to occur
+Config.AlwaysBleedChance = 70 -- Set the chance out of 100 that if a player is hit with a weapon, that also has a random chance, it will cause bleeding
+Config.MessageTimer = 12 -- How long it will take to display limb/bleed message
+Config.AIHealTimer = 20 -- How long it will take to be healed after checking in, in seconds
+Config.BleedTickRate = 30 -- How much time, in seconds, between bleed ticks
+Config.BleedMovementTick = 10 -- How many seconds is taken away from the bleed tick rate if the player is walking, jogging, or sprinting
+Config.BleedMovementAdvance = 3 -- How much time moving while bleeding adds
+Config.BleedTickDamage = 8 -- The base damage that is multiplied by bleed level everytime a bleed tick occurs
+Config.FadeOutTimer = 2 -- How many bleed ticks occur before fadeout happens
+Config.BlackoutTimer = 10 -- How many bleed ticks occur before blacking out
+Config.AdvanceBleedTimer = 10 -- How many bleed ticks occur before bleed level increases
+Config.HeadInjuryTimer = 30 -- How much time, in seconds, do head injury effects chance occur
+Config.ArmInjuryTimer = 30 -- How much time, in seconds, do arm injury effects chance occur
+Config.LegInjuryTimer = 15 -- How much time, in seconds, do leg injury effects chance occur
+Config.HeadInjuryChance = 25 -- The chance, in percent, that head injury side-effects get applied
+Config.LegInjuryChance = { -- The chance, in percent, that leg injury side-effects get applied
+    Running = 50,
+    Walking = 15
+}
+Config.MajorArmoredBleedChance = 45 -- The chance, in percent, that a player will get a bleed effect when taking heavy damage while wearing armor
+Config.MaxInjuryChanceMulti = 3 -- How many times the HealthDamage value above can divide into damage taken before damage is forced to be applied
+Config.DamageMinorToMajor = 35 -- How much damage would have to be applied for a minor weapon to be considered a major damage event. Put this at 100 if you want to disable it
+Config.AlertShowInfo = 2 -- How many injuries a player must have before being alerted about them
 
 Config.UseTarget = GetConvar('UseTarget', false)
 
@@ -61,6 +93,12 @@ Config.Locations = {
         [14] = {coords = vector4(-459.0, -279.65, 34.47, 199.86), taken = false, model = 2117714237},
         [15] = {coords = vector4(-462.75, -281.23, 34.47, 199.86), taken = false, model = 2117714237},
      
+    },
+    ["jailbeds"] = {
+        [1] = {coords = vector4(1761.96, 2597.74, 45.66, 270.14), taken = false, model = 2117668672},
+        [2] = {coords = vector4(1761.96, 2591.51, 45.66, 269.8), taken = false, model = 2117668672},
+        [3] = {coords = vector4(1771.8, 2598.02, 45.66, 89.05), taken = false, model = 2117668672},
+        [4] = {coords = vector4(1771.85, 2591.85, 45.66, 91.51), taken = false, model = 2117668672},
     },
     ["stations"] = {
         [1] = {label = Lang:t('info.pb_hospital'), coords = vector4(304.27, -600.33, 43.28, 272.249)},
