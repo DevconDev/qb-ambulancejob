@@ -34,9 +34,6 @@ Config.AlertShowInfo = 2 -- How many injuries a player must have before being al
 
 Config.UseTarget = GetConvar('UseTarget', false)
 
-Config.MinimalDoctors = 0
-Config.WipeInventoryOnRespawn = false
-
 Config.Locations = {
     ["checking"] = {
 	    [1] = vector3(308.19, -595.35, 43.29),
