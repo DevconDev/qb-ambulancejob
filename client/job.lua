@@ -91,7 +91,7 @@ RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
     end
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+--[[RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     exports.spawnmanager:setAutoSpawn(false)
     local ped = PlayerPedId()
     local player = PlayerId()
@@ -123,6 +123,41 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
             end
         end)
     end)
+end)]]
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    exports.spawnmanager:setAutoSpawn(false)
+    local ped = PlayerPedId()
+    TriggerServerEvent("hospital:server:SetDoctor")
+    CreateThread(function()
+        Wait(5000)
+        -- SetEntityMaxHealth(ped, 200)
+        -- SetEntityHealth(ped, 200)
+        SetPlayerHealthRechargeMultiplier(ped, 0.0)
+        SetPlayerHealthRechargeLimit(ped, 0.0)
+    end)
+    CreateThread(function()
+        Wait(1000)
+        QBCore.Functions.GetPlayerData(function(PlayerData)
+            PlayerJob = PlayerData.job
+            onDuty = PlayerData.job.onduty
+            SetEntityHealth(PlayerPedId(), PlayerData.metadata["health"])
+            SetPedArmour(PlayerPedId(), PlayerData.metadata["armor"])
+            if (not PlayerData.metadata["inlaststand"] and PlayerData.metadata["isdead"]) then
+                deathTime = Laststand.ReviveInterval
+                OnDeath()
+                DeathTimer()
+            elseif (PlayerData.metadata["inlaststand"] and not PlayerData.metadata["isdead"]) then
+                SetLaststand(true)
+            else
+                TriggerServerEvent("hospital:server:SetDeathStatus", false)
+                TriggerServerEvent("hospital:server:SetLaststandStatus", false)
+            end
+
+            if PlayerJob.name == 'ambulance' and onDuty then
+                TriggerServerEvent("hospital:server:AddDoctor", PlayerJob.name)
+            end
+        end)
+    end)
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
@@ -142,6 +177,7 @@ RegisterNetEvent('QBCore:Client:SetDuty', function(duty)
 
     onDuty = duty
 end)
+
 
 function Status()
     if isStatusChecking then
@@ -450,6 +486,8 @@ end)
 RegisterCommand('toggleduty', function(source)
     TriggerEvent('qb-policejob:ToggleDuty')
 end)
+
+
 CreateThread(function()
     for k, v in pairs(Config.Locations["vehicle"]) do
         local boxZone = BoxZone:Create(vector3(vector3(v.x, v.y, v.z)), 5, 5, {

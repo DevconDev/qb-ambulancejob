@@ -140,14 +140,23 @@ RegisterNetEvent('hospital:server:SetLaststandStatus', function(bool)
 	end
 end)
 
-RegisterNetEvent('hospital:server:SetArmor', function(amount)
+--[[RegisterNetEvent('hospital:server:SetArmor', function(amount)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
 	if Player then
 		Player.Functions.SetMetaData("armor", amount)
 	end
+end)]]
+RegisterNetEvent('hospital:server:SetArmor', function(amount)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if not Player then return end
+    if amount <= 0 then
+       amount = 0
+    end
+    Player.Functions.SetMetaData('armor', amount)
+    Player.Functions.Save()
 end)
-
 RegisterNetEvent('hospital:server:TreatWounds', function(playerId)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
@@ -321,8 +330,9 @@ QBCore.Functions.CreateCallback('hospital:GetPlayerBleeding', function(source, c
 	end
 end)
 
--- Commands
 
+-- Commands
+ 
 QBCore.Commands.Add('911e', Lang:t('info.ems_report'), {{name = 'message', help = Lang:t('info.message_sent')}}, false, function(source, args)
 	local src = source
 	if args[1] then message = table.concat(args, " ") else message = Lang:t('info.civ_call') end
