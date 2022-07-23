@@ -149,6 +149,18 @@ RegisterNetEvent('hospital:client:UseFirstAid', function()
     end
 end)
 
+RegisterNetEvent('hospital:client:UseIVBag', function()
+    if not isEscorting then
+        local player, distance = GetClosestPlayer()
+        if player ~= -1 and distance < 1.5 then
+            local playerId = GetPlayerServerId(player)
+            TriggerServerEvent('hospital:server:UseIVBag', playerId)
+        end
+    else
+        QBCore.Functions.Notify(Lang:t('error.impossible'), 'error')
+    end
+end)
+
 RegisterNetEvent('hospital:client:CanHelp', function(helperId)
     if InLaststand then
         if LaststandTime <= 300 then

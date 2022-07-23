@@ -239,6 +239,38 @@ RegisterNetEvent('hospital:client:RevivePlayer', function()
     end, 'firstaid')
 end)
 
+RegisterNetEvent('hospital:client:RevivePlayerIV', function()
+    QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
+        if hasItem then
+            local player, distance = GetClosestPlayer()
+            if player ~= -1 and distance < 5.0 then
+                local playerId = GetPlayerServerId(player)
+                QBCore.Functions.Progressbar("hospital_revive", Lang:t('progress.revive'), 5000, false, true, {
+                    disableMovement = false,
+                    disableCarMovement = false,
+                    disableMouse = false,
+                    disableCombat = true,
+                }, {
+                    animDict = healAnimDict,
+                    anim = healAnim,
+                    flags = 16,
+                }, {}, {}, function() -- Done
+                    StopAnimTask(PlayerPedId(), healAnimDict, "exit", 1.0)
+                    QBCore.Functions.Notify(Lang:t('success.revived'), 'success')
+                    TriggerServerEvent("hospital:server:RevivePlayer", playerId)
+                end, function() -- Cancel
+                    StopAnimTask(PlayerPedId(), healAnimDict, "exit", 1.0)
+                    QBCore.Functions.Notify(Lang:t('error.canceled'), "error")
+                end)
+            else
+                QBCore.Functions.Notify(Lang:t('error.no_player'), "error")
+            end
+        else
+            QBCore.Functions.Notify(Lang:t('error.no_ivbag'), "error")
+        end
+    end, 'ivbag')
+end)
+
 RegisterNetEvent('hospital:client:TreatWounds', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then

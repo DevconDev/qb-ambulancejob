@@ -210,6 +210,28 @@ RegisterNetEvent('hospital:server:RevivePlayer', function(playerId, isOldMan)
 	end
 end)
 
+RegisterNetEvent('hospital:server:RevivePlayerIV', function(playerId, isOldMan)
+	local src = source
+	local Player = QBCore.Functions.GetPlayer(src)
+	local Patient = QBCore.Functions.GetPlayer(playerId)
+	local oldMan = isOldMan or false
+	if Patient then
+		if oldMan then
+			if Player.Functions.RemoveMoney("cash", 5000, "revived-player") then
+				Player.Functions.RemoveItem('ivbag', 1)
+				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['ivbag'], "remove")
+				TriggerClientEvent('hospital:client:Revive', Patient.PlayerData.source)
+			else
+				TriggerClientEvent('QBCore:Notify', src, Lang:t('error.not_enough_money'), "error")
+			end
+		else
+			Player.Functions.RemoveItem('ivbag', 1)
+			TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['ivbag'], "remove")
+			TriggerClientEvent('hospital:client:Revive', Patient.PlayerData.source)
+		end
+	end
+end)
+
 RegisterNetEvent('hospital:server:SendDoctorAlert', function()
     local src = source
     if not doctorCalled then
@@ -229,6 +251,14 @@ RegisterNetEvent('hospital:server:SendDoctorAlert', function()
 end)
 
 RegisterNetEvent('hospital:server:UseFirstAid', function(targetId)
+	local src = source
+	local Target = QBCore.Functions.GetPlayer(targetId)
+	if Target then
+		TriggerClientEvent('hospital:client:CanHelp', targetId, src)
+	end
+end)
+
+RegisterNetEvent('hospital:server:UseIVBag', function(targetId)
 	local src = source
 	local Target = QBCore.Functions.GetPlayer(targetId)
 	if Target then
@@ -426,4 +456,11 @@ QBCore.Functions.CreateUseableItem("firstaid", function(source, item)
 	end
 end)
 
+QBCore.Functions.CreateUseableItem("ivbag", function(source, item)
+	local src = source
+	local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.GetItemByName(item.name) ~= nil then
+		TriggerClientEvent("hospital:client:UseIVBag", src)
+	end
+end)
 exports('GetDoctorCount', function() return doctorCount end)
