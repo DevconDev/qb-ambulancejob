@@ -73,8 +73,14 @@ local Translations = {
         big_bleed = 'desangrándote gravemente...',
     },
     menu = {
+<<<<<<< HEAD
         amb_vehicles = 'Vehiculos EMS',
         close = '⬅ Cerrar Menu',
+=======
+        amb_vehicles = 'Vehículos EMS',
+        status = 'Estado de salud',
+        close = '⬅ Cerrar menu',
+>>>>>>> pr/DevconDev/1
     },
     text = {
         pstash_button = '~g~E~w~ - Taquilla Personal',
@@ -128,7 +134,10 @@ local Translations = {
     }
 }
 
-Lang = Locale:new({
-    phrases = Translations,
-    warnOnMissing = true
-})
+if GetConvar('qb_locale', 'en') == 'es' then
+    Lang = Locale:new({
+        phrases = Translations,
+        warnOnMissing = true,
+        fallbackLang = Lang,
+    })
+end
