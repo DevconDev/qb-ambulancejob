@@ -503,7 +503,7 @@ CreateThread(function()
             maxZ = v.z + 2,
         })
         boxZone:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" and onDuty then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" and onDuty then
                 exports['qb-core']:DrawText(Lang:t('text.veh_button'), 'left')
                 EMSVehicle(k)
             else
@@ -522,7 +522,7 @@ CreateThread(function()
             maxZ = v.z + 2,
         })
         boxZone:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" and onDuty then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" and onDuty then
                 exports['qb-core']:DrawText(Lang:t('text.heli_button'), 'left')
                 EMSHelicopter(k)
             else
@@ -652,7 +652,7 @@ else
 
         local signCombo = ComboZone:Create(signPoly, { name = "signcombo", debugPoly = false })
         signCombo:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" then
                 if not onDuty then
                     exports['qb-core']:DrawText(Lang:t('text.onduty_button'), 'left')
                     EMSControls("sign")
@@ -679,7 +679,7 @@ else
 
         local stashCombo = ComboZone:Create(stashPoly, { name = "stashCombo", debugPoly = false })
         stashCombo:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" then
                 if onDuty then
                     exports['qb-core']:DrawText(Lang:t('text.pstash_button'), 'left')
                     EMSControls("stash")
@@ -703,7 +703,7 @@ else
 
         local armoryCombo = ComboZone:Create(armoryPoly, { name = "armoryCombo", debugPoly = false })
         armoryCombo:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" then
                 if onDuty then
                     exports['qb-core']:DrawText(Lang:t('text.armory_button'), 'left')
                     EMSControls("armory")
@@ -727,7 +727,7 @@ else
 
         local roofCombo = ComboZone:Create(roofPoly, { name = "roofCombo", debugPoly = false })
         roofCombo:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" then
                 if onDuty then
                     exports['qb-core']:DrawText(Lang:t('text.elevator_main'), 'left')
                     EMSControls("main")
@@ -753,7 +753,7 @@ else
 
         local mainCombo = ComboZone:Create(mainPoly, { name = "mainPoly", debugPoly = false })
         mainCombo:onPlayerInOut(function(isPointInside)
-            if isPointInside and PlayerJob.name == "ambulance" then
+            if isPointInside and PlayerJob.name == "ambulance" or PlayerJob.name == "fire" then
                 if onDuty then
                     exports['qb-core']:DrawText(Lang:t('text.elevator_roof'), 'left')
                     EMSControls("roof")
