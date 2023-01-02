@@ -49,7 +49,7 @@ Config.Locations = {
     ["vehicle"] = {
         [1] = vector4(294.578, -574.761, 43.179, 35.79),
         [2] = vector4(-234.28, 6329.16, 32.15, 222.5),
-        [3] = vector4(-460.24, -332.0, 34.36, 81.48),
+        [3] = vector4(-438.57, -344.92, 24.02, 109.35),
 
     },
     ["helicopter"] = {
@@ -107,11 +107,10 @@ Config.Locations = {
 Config.AuthorizedVehicles = {
 	-- Grade 0
 	[0] = {
-		["ambo"] = "Ambulance",
+		["aemsv450"] = "Ambulance2",
 	},
 	-- Grade 1
 	[1] = {
-		["ambo"] = "Ambulance",
         ["aemsv450"] = "Ambulance2",
 
 	},
@@ -119,6 +118,7 @@ Config.AuthorizedVehicles = {
 	[2] = {
 		["ambo"] = "Ambulance",
         ["aemsv450"] = "Ambulance2",
+        ["emsnspeedo"] = "Ambulance3",
 	},
 	-- Grade 3
 	[3] = {
@@ -131,8 +131,7 @@ Config.AuthorizedVehicles = {
 	[4] = {
 		["ambo"] = "Ambulance",
         ["aemsv450"] = "Ambulance2",
-        ["bmwexp"] = "EMS SUV",
-        ["poldom"] = "EMS Dom",
+        ["bmwexp"] = "EMS SUV2",
         ["emsgator"] = "EMS Gator",
         ["gatortrailer"] = "EMS Gator Trailer",
 	}
